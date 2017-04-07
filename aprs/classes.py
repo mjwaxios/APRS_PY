@@ -94,7 +94,6 @@ class Frame(object):
         self.path = []
         self.text = ''
         if frame is not None:
-#            self.frame = kiss.strip_df_start(str(frame))
             self.frame = frame
             self.parse()
 
@@ -121,19 +120,15 @@ class Frame(object):
         # Allows to be called as class method:
         if frame is not None:
             self.frame = frame
-#
-#        try:
-#            self.parse_kiss()
-#        except IndexError as exc:
-#            self._logger.info('Not a KISS Frame? %s', self.frame.encode('hex'))
 
         if not self.source or not self.destination:
             try:
                 self.parse_text()
             except UnicodeDecodeError as exc:
-                self._logger.info(
-                    'Cannot decode frame=%s', self.frame.encode('hex'))
-                self._logger.exception(exc)
+		pass	
+            #    self._logger.info(
+            #        'Cannot decode frame=%s', self.frame.encode('hex'))
+            #    self._logger.exception(exc)
 
     def parse_text(self):
         """
