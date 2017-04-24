@@ -361,6 +361,7 @@ class TCP(APRS):
 
         except socket.error as sock_err:
             self._logger.error(sock_err)
+	    print "We are leaving"	
             raise
 
 
