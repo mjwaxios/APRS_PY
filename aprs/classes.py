@@ -351,9 +351,13 @@ class TCP(APRS):
                         if 'logresp' in line:
                             self._logger.debug('logresp=%s', line)
                     else:
-                        self._logger.debug('line=%s', line)
-                        if callback:
-                            callback(Frame(line))
+                        try:
+				line.encode('UTF-8')
+                        	self._logger.debug('line=%s', line)
+	                        if callback:
+        	                    callback(Frame(line))
+			except:
+				pass
 
         except socket.error as sock_err:
             self._logger.error(sock_err)
